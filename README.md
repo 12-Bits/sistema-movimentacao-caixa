@@ -7,6 +7,11 @@ Projeto fullstack com:
 
 ---
 
+Dependências:
+Docker
+
+---
+
 ## 📁 Estrutura do Projeto
 
 sistema-movimentacao-caixa/ <br>

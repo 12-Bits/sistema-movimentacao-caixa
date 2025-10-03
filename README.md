@@ -9,9 +9,9 @@ Projeto fullstack com:
 
 ## 📁 Estrutura do Projeto
 
-sistema-movimentacao-caixa/ \n
-├── backend/ → NestJS API \n
-└── frontend/ → React com Vite \n
+sistema-movimentacao-caixa/ <br>
+├── backend/ → NestJS API <br>
+└── frontend/ → React com Vite <br>
 
 ---
 

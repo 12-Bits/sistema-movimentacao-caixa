@@ -1,7 +1,6 @@
 <h1>Sistema de Movimentação de Caixa</h1><br>
 
 <h2>🎯 Sobre o Projeto</h2>
-Breve descrição do que o sistema faz. Ex:
 
 Este é um sistema Fullstack para gestão de movimentações de caixa, permitindo que o usuário visualize, registre e categorize entradas e saídas financeiras.
 
@@ -13,12 +12,10 @@ Este é um sistema Fullstack para gestão de movimentações de caixa, permitind
 | Orquestração | Contêineres | Docker / Docker Compose |
 | Banco de Dados | PostgreSQL | Row 2, Cell 3 |
 
-Exportar para as Planilhas
-
-Como Rodar o Projeto
+<h2>Como Rodar o Projeto</h2>
 Como o projeto utiliza Docker Compose, a inicialização é feita com um único comando.
 
-📋 Pré-requisitos
+<h2>📋 Pré-requisitos</h2>
 Para rodar o projeto localmente, você precisa ter o Docker e o Docker Compose instalados em sua máquina.
 
 Instalar Docker Desktop
@@ -26,32 +23,33 @@ Instalar Docker Desktop
 🛠️ Instalação e Inicialização
 Siga os passos abaixo no seu terminal:
 
-Clone o Repositório:
-
-Bash
+<h3>Clone o Repositório:</h3>
 
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
-Copiar Arquivos de Variáveis de Ambiente:
-Se você usa arquivos .env, inclua esta etapa. Ex:
+
+
+<h3>Copiar Arquivos de Variáveis de Ambiente:</h3>
 
 cp .env.example .env
 
 
-Construa e Inicie os Contêineres:
+<h3>Construa e Inicie os Contêineres:</h3>
 Este comando irá construir as imagens do Backend (sistema-api) e do Frontend (sistema-client), criar a rede e subir todos os serviços definidos no docker-compose.yml.
 
 docker compose up --build -d
-(A flag -d executa em segundo plano, mas você pode removê-la para ver os logs de inicialização, como você fez antes.)
+(A flag -d executa em segundo plano, mas você pode removê-la para ver os logs de inicialização)
 
-Verifique os Logs (Opcional):
+<h3>Verifique os Logs (Opcional):</h3>
 Para garantir que os serviços subiram sem erros (e para verificar o status do erro atual da API):
 
 docker compose logs -f
 
-🌍 Acessando a Aplicação
+<h2>🌍 Acessando a Aplicação</h2>
 Depois que os contêineres estiverem em execução, você pode acessar os serviços:
 
-Serviço	Porta Externa	URL de Acesso
-Frontend (Cliente)	80 (Padrão Nginx)	http://localhost
-Backend (API)	3001 (Exemplo)	http://localhost:3001
+| Serviço | Porta Externa | URL de Acesso |
+|---|---|---|
+| Frontend (Cliente) | 80 (Padrão Nginx) | http://localhost |
+| Backend (API) | 3001 (Exemplo) | http://localhost:3001 |
+

@@ -5,12 +5,13 @@
 Este é um sistema Fullstack para gestão de movimentações de caixa, permitindo que o usuário visualize, registre e categorize entradas e saídas financeiras.
 
 <h2>💻 Tecnologias</h2>
+
 | Módulo | Tecnologia Principal	 | Framework/Runtime |
 |---|---|---|
 | Backend (API) | TypeScript | NestJS (Node.js) |
 | Frontend (Client) | JavaScript/TypeScript | React |
-| Orquestração | Contêineres | Docker / Docker Compose |
-| Banco de Dados | PostgreSQL | Row 2, Cell 3 |
+| Orquestração | Contêineres | Docker/Docker Compose |
+| Banco de Dados | PostgreSQL | Versão |
 
 <h2>Como Rodar o Projeto</h2>
 Como o projeto utiliza Docker Compose, a inicialização é feita com um único comando.

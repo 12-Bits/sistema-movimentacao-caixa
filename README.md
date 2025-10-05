@@ -1,10 +1,11 @@
-Nome do Seu Projeto (Ex: Sistema de Movimentação de Caixa)
-🎯 Sobre o Projeto
+<h1>Sistema de Movimentação de Caixa</h1><br>
+
+<h2>🎯 Sobre o Projeto</h2>
 Breve descrição do que o sistema faz. Ex:
 
 Este é um sistema Fullstack para gestão de movimentações de caixa, permitindo que o usuário visualize, registre e categorize entradas e saídas financeiras.
 
-💻 Tecnologias
+<h2>💻 Tecnologias</h2>
 | Módulo | Tecnologia Principal	 | Framework/Runtime |
 |---|---|---|
 | Backend (API) | TypeScript | NestJS (Node.js) |

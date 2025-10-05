@@ -1,0 +1,6 @@
+# Ignora pastas de build e dependências de todos os subdiretórios
+**/node_modules
+**/dist
+**/build
+.git
+.DS_Store

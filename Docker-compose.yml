@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Serviço do Backend (API)
+  api:
+    build:
+      # O contexto é a pasta raiz
+      context: . 
+      # O Dockerfile que deve ser usado é o que está dentro da pasta backend/
+      dockerfile: backend/Dockerfile 
+    ports:
+      - "3001:3000"
+    restart: always
+
+  # Serviço do Frontend (React)
+  client:
+    build:
+      # O contexto é a pasta raiz
+      context: . 
+      # O Dockerfile que deve ser usado é o que está dentro da pasta frontend/
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: always

@@ -14,6 +14,9 @@ services:
 
   # Serviço do Frontend (React)
   client:
+    environment:
+      - CHOKIDAR_USEPOLLING=true 
+      - WDS_SOCKET_PORT=0
     build:
       # O contexto é a pasta raiz
       context: . 
@@ -24,3 +27,5 @@ services:
     depends_on:
       - api
     restart: always
+    stdin_open: true  # Mantém o STDIN aberto (necessário para alguns servidores)
+    tty: true 

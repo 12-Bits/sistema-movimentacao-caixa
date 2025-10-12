@@ -1,0 +1,14 @@
+# Stage 1: Imagem Base
+FROM node:20-alpine
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia os arquivos de definição de dependência
+COPY package.json package-lock.json ./
+
+# Instala as dependências
+RUN npm install
+
+# O código será montado via Volume, o container está pronto
+# O comando de execução virá do docker-compose.yml

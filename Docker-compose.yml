@@ -1,0 +1,66 @@
+# A diretiva 'version' foi removida para usar a Compose Specification moderna.
+
+services:
+  # 1. Serviço de Banco de Dados (PostgreSQL)
+  db:
+    image: postgres:15-alpine # Imagem oficial leve
+    container_name: caixa_db_service
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistência de dados
+    networks:
+      - app-network
+
+  # 2. Serviço de API (NestJS - Backend)
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: caixa_api_service
+    ports:
+      - "3000:3000" # Porta da API
+    depends_on:
+      - db # Garante que o DB inicie antes
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      PORT: 3000
+    volumes:
+      - ./backend:/app # Mapeia o código local para hot-reload
+      - /app/node_modules # Evita que a pasta node_modules local sobrescreva a do container
+    networks:
+      - app-network
+    # Inicia o servidor NestJS em modo de desenvolvimento (hot-reload)
+    command: npm run start:dev
+
+  # 3. Serviço de Cliente (React - Frontend)
+  client:
+
+    image: node:20-alpine
+    container_name: caixa_client_service
+    working_dir: /app
+    ports:
+      - "5173:5173" # Porta padrão do Vite
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    # Instala e executa o servidor de desenvolvimento do React/Vite
+    command: sh -c "npm install && npm run dev"
+
+# Volumes para persistência do DB
+volumes:
+  postgres_data:
+
+# Rede para comunicação interna entre os serviços
+networks:
+  app-network:
+    # Não precisa de driver, mas é boa prática

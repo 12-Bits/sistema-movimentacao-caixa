@@ -1,0 +1,12 @@
+# Diretório de Módulos
+node_modules/
+
+# Arquivos de Cache e Build
+dist/
+build/
+temp/
+
+# Variáveis de Ambiente e Segredos (NÃO ENVIE ISSO!)
+.env
+.DS_Store
+*.log

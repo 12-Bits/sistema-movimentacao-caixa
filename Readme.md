@@ -30,6 +30,9 @@ Certifique-se de ter instalado:
 git clone https://github.com/12-Bits/sistema-movimentacao-caixa.git
 cd sistema-caixa-fullstack
 
+### 2 Renomeie ou edite o ".env.example" para ".env" para o Docker se conectar ao banco de dados
+
+    
 ### 2. Iniciar os Conteiners
 
 docker compose up --build

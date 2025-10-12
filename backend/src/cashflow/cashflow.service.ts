@@ -1,23 +1,25 @@
-// backend/src/cashflow/cashflow.service.ts
-
 import { Injectable } from '@nestjs/common';
-import { CreateTransactionDto } from './dto/create-transaction.dto'; // <<-- IMPORT AQUI!
-import { Transaction } from './entities/transaction.entity';
+// Importe o DTO se ele ainda não estiver lá
+import { CreateTransactionDto } from './dto/create-transaction.dto'; 
+
 
 @Injectable()
 export class CashflowService {
-  // Use o nome correto do DTO
-  async createTransaction(transactionDto: CreateTransactionDto): Promise<Transaction> {
-    
-    // ... o restante da sua lógica de transação ...
 
-    // Exemplo de como usar o tipo:
-    console.log(`Nova transação do tipo: ${transactionDto.type} no valor de ${transactionDto.amount}`);
-    
-    // ATENÇÃO: Se houver erros no código de transação, use `CreateTransactionDto`
-    // no lugar de `TransactionDto` em todas as ocorrências.
-
-    // Coloque a lógica real aqui:
-    return null as any; 
+  // Método chamado por POST /cashflow/transaction
+  createTransaction(createTransactionDto: CreateTransactionDto) {
+    // 🚨 A lógica real de persistência virá aqui (TypeORM/DB)
+    console.log('Criando transação:', createTransactionDto);
+    return { 
+      message: 'Transação criada com sucesso (Simulação)', 
+      data: createTransactionDto 
+    };
+  }
+  
+  // Método chamado por GET /cashflow/balance
+  getCurrentBalance(): number {
+    // 🚨 A lógica real de cálculo de saldo virá aqui
+    console.log('Buscando saldo atual...');
+    return 0.00; // Retorna um valor padrão para satisfazer a tipagem
   }
 }

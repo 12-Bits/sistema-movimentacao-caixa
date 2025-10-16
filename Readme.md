@@ -25,16 +25,22 @@ Certifique-se de ter instalado:
 * **Git**
 
 ### 1. Clonar o Repositório
-
+Crie uma pasta para manter o repositório, e
+1º Opção:
+    Baixe o zip do repositório clicando no botão "Code" e selecione a Última opção
+2ª Opção:
+    Na pasta, execute o terminal de seu sistema operacional
 
 git clone https://github.com/12-Bits/sistema-movimentacao-caixa.git
-cd sistema-caixa-fullstack
 
-### 2. Iniciar os Conteiners
+### 2 Renomeie ou edite o ".env.example" para ".env" para o Docker se conectar ao banco de dados
+
+    
+### 3. Iniciar os Conteiners
 
 docker compose up --build
 
-### 3. Acessar a Aplicação
+### 4. Acessar a Aplicação
 Aguarde até que os logs do terminal mostrem que a API e o Frontend foram iniciados:
 
 <b>Frontend (React/Vite):</b> Abra seu navegador em http://localhost:5173

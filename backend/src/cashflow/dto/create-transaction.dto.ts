@@ -1,16 +1,14 @@
-import { IsEnum, IsNumber, IsString, IsPositive } from 'class-validator';
-import { TransactionType } from '../entities/transaction.entity';
+// backend/src/cashflow/dto/create-transaction.dto.ts
 
-// Usamos DTOs e 'class-validator' para garantir que os dados recebidos sejam válidos.
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateTransactionDto {
-  
-  @IsEnum(TransactionType)
-  type: TransactionType; // Deve ser 'CREDIT' ou 'DEBIT'
+  @ApiProperty({ example: 100.50, description: 'Valor da transação' })
+  amount: number;
 
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @IsPositive()
-  amount: number; // O valor da movimentação
+  @ApiProperty({ example: 'CREDIT', description: 'Tipo: CREDIT ou DEBIT' })
+  type: 'CREDIT' | 'DEBIT';
 
-  @IsString()
-  description: string; // Descrição da movimentação
+  @ApiProperty({ example: 'Compra de suprimentos', description: 'Descrição da transação' })
+  description: string;
 }

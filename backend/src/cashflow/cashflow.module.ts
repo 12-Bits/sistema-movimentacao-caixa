@@ -1,5 +1,3 @@
-// backend/src/cashflow/cashflow.module.ts
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CashflowService } from './cashflow.service';

@@ -1,35 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// frontend/src/App.tsx (ou sua página principal)
+
+import React from 'react';
+import { BalanceCard } from './components/dashboard/BalanceCard';
+// ... outros imports
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <h1>Dashboard de Fluxo de Caixa</h1>
+      
+      {/* 🚨 O dado do banco de dados aparece aqui! */}
+      <BalanceCard /> 
+      
+      {/* ... Outros componentes (Formulário, Tabela) */}
+    </div>
+  );
 }
 
-export default App
+export default App;

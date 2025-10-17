@@ -1,6 +1,8 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger'; // Importe para o Swagger
 import { CreateTransactionDto } from './dto/create-transaction.dto';
+import { ApiResponse } from '@nestjs/swagger'; // Importe para o Swagger
+import { SummaryDto } from './dto/summary.dto'; // Importe o DTO
 import { CashflowService } from './cashflow.service'; 
 
 @ApiTags('cashflow') // Tag para o Swagger
@@ -19,4 +21,11 @@ export class CashflowController {
     // Implementação do serviço
     return this.cashflowService.getCurrentBalance();
   }
+
+  @Get('summary') // 🚨 Novo endpoint: /cashflow/summary
+  @ApiResponse({ status: 200, type: SummaryDto })
+  getSummary() {
+    return this.cashflowService.getSummary();
+  }
+
 }

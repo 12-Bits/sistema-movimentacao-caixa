@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { BalanceCard } from './components/dashboard/BalanceCard';
+import { SummaryCards } from './components/dashboard/SummaryCards';
+import './App.css';
 // ... outros imports
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
       
       {/* 🚨 O dado do banco de dados aparece aqui! */}
       <BalanceCard /> 
-      
+      <SummaryCards />
       {/* ... Outros componentes (Formulário, Tabela) */}
     </div>
   );

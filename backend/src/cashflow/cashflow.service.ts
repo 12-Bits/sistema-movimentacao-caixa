@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-// Importe o DTO se ele ainda não estiver lá
 import { CreateTransactionDto } from './dto/create-transaction.dto'; 
 import { SummaryDto } from './dto/summary.dto';
 
@@ -20,13 +19,11 @@ export class CashflowService {
   
   // Método chamado por GET /cashflow/balance
   getCurrentBalance(): number {
-    // 🚨 A lógica real de cálculo de saldo virá aqui
     console.log('Buscando saldo atual...');
-    return 0.00; // Retorna um valor padrão para satisfazer a tipagem
+    return 0.00; // Simulação
   }
 
   getSummary(): SummaryDto {
-    // 🚨 Aqui virá a lógica real de consulta ao DB
     const incomes = 1500.50;  // Simulação
     const expenses = 500.00; // Simulação
     const balance = incomes - expenses;

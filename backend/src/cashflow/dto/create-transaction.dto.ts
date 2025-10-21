@@ -1,5 +1,3 @@
-// backend/src/cashflow/dto/create-transaction.dto.ts
-
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateTransactionDto {

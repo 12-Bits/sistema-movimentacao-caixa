@@ -12,17 +12,15 @@ export class CashflowController {
 
   @Post('transaction')
   create(@Body() createTransactionDto: CreateTransactionDto) {
-    // Implementação do serviço
     return this.cashflowService.createTransaction(createTransactionDto);
   }
 
   @Get('balance')
   getBalance() {
-    // Implementação do serviço
     return this.cashflowService.getCurrentBalance();
   }
 
-  @Get('summary') // 🚨 Novo endpoint: /cashflow/summary
+  @Get('summary') 
   @ApiResponse({ status: 200, type: SummaryDto })
   getSummary() {
     return this.cashflowService.getSummary();

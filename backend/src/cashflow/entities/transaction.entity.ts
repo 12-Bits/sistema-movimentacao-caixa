@@ -35,6 +35,8 @@ export class Transaction {
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  date: Date
   
   // Opcional: Você pode adicionar uma relação @ManyToOne com a entidade Account (se criada)
   // @ManyToOne(() => Account, account => account.transactions)

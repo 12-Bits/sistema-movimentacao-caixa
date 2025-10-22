@@ -1,5 +1,11 @@
 {
   "dependencies": {
-    "typeorm": "^0.3.27"
+    "@nestjs/swagger": "^11.2.1",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.27",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0"
   }
 }

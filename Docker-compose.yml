@@ -7,9 +7,9 @@ services:
     container_name: caixa_db_service
     restart: always
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: postgres 
+      POSTGRES_PASSWORD: banco123
+      POSTGRES_DB: caixa_db
     ports:
       - "5432:5432"
     volumes:
@@ -28,9 +28,10 @@ services:
     depends_on:
       - db # Garante que o DB inicie antes
     environment:
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
+      DB_HOST: db 
+      DB_USER: postgres
+      DB_PASSWORD: banco123
+      DB_NAME: caixa_db
       PORT: 3000
     volumes:
       - ./backend:/app # Mapeia o código local para hot-reload

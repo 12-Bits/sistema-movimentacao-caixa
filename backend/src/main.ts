@@ -1,19 +1,32 @@
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configuração do Swagger (dentro do bootstrap)
+  // --- CONFIGURAÇÃO DO SWAGGER ---
   const config = new DocumentBuilder()
-    .setTitle('Caixa API')
-    .setDescription('API de movimentação de caixa')
+    .setTitle('Sistema de Caixa API')
+    .setDescription('API para gerenciar transações e saldo.')
     .setVersion('1.0')
+    .addTag('cashflow')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
 
-  await app.listen(process.env.PORT ?? 3000);
+  const document = SwaggerModule.createDocument(app, config);
+  // O endpoint será http://localhost:3000/api/docs
+  SwaggerModule.setup('api/docs', app, document); 
+  // -------------------------------
+
+  app.enableCors({
+    // Permite qualquer origem durante o DESENVOLVIMENTO
+    // Em produção, você mudaria para: origin: 'https://seuapp.com'
+    origin: '*', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
+  await app.listen(3000);
 }
 bootstrap();

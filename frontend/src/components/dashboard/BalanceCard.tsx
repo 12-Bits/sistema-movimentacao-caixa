@@ -1,5 +1,3 @@
-// frontend/src/components/BalanceCard.tsx
-
 import React from 'react';
 import { useBalance } from '../../hooks/useBalance';
 

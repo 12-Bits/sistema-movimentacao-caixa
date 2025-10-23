@@ -1,6 +1,5 @@
-// backend/src/cashflow/cashflow.controller.ts (trecho)
 import { Controller, Post, Body, Get, Query, Delete, Param, NotFoundException} from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger'; // Importe para o Swagger
+import { ApiTags } from '@nestjs/swagger'; 
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { ListTransactionsDto } from './dto/list-transactions.dto';
 import { CashflowService } from './cashflow.service'; 
@@ -12,7 +11,6 @@ export class CashflowController {
 
   @Post('transaction')
   create(@Body() createTransactionDto: CreateTransactionDto) {
-    // Implementação do serviço
     return this.cashflowService.createTransaction(createTransactionDto);
   }
 

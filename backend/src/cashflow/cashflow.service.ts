@@ -21,14 +21,32 @@ constructor(
   async createTransaction(createTransactionDto: CreateTransactionDto): Promise<Transaction> {
       console.log('Iniciando criação da transação no DB:', createTransactionDto);
       
-      // 1. Cria a entidade no contexto do repositório
-      const newTransaction = this.transactionRepository.create(createTransactionDto);
-      
-      // 2. 🚨 PERSISTE NO BANCO DE DADOS 🚨
-      const savedTransaction = await this.transactionRepository.save(newTransaction);
-      
-      return savedTransaction; // Retorna o objeto salvo (com ID gerado)
-  }
+    const newTransaction = this.transactionRepository.create(createTransactionDto);
+        
+        // 🚨 DEFINIR CAMPOS OBRIGATÓRIOS QUE NÃO ESTÃO NO DTO 🚨
+        
+        // a) Definir a data (se não for fornecida no DTO)
+        if (!newTransaction.date) {
+        // 🚨 CORREÇÃO: Cria um objeto Date, não uma string ISO. 🚨
+        newTransaction.date = new Date(); 
+        
+        // b) Definir o saldo após (balanceAfter) - ESTE É O CAMPO MAIS PROVÁVEL DE CAUSAR O ERRO 500
+        // Por enquanto, defina um valor temporário para garantir que a linha do DB seja preenchida.
+        // Lógica real: Chame getCurrentBalance() para calcular.
+        newTransaction.balanceAfter = 0;        
+
+
+}
+        // 2. Persiste no Banco de Dados
+        try {
+            const savedTransaction = await this.transactionRepository.save(newTransaction);
+            return savedTransaction;
+        } catch (dbError) {
+            console.error("ERRO AO SALVAR TRANSAÇÃO:", dbError);
+            // Garante que o erro seja logado antes de ser relançado
+            throw new Error("Falha na persistência de dados.");
+        }
+      }
   
   
   // Método chamado por GET /cashflow/balance

@@ -11,7 +11,5 @@ export class CreateTransactionDto {
 
   @ApiProperty({ example: 'Compra de suprimentos', description: 'Descrição da transação' })
   description: string;
-
-
   
 }

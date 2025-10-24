@@ -23,16 +23,10 @@ constructor(
       
     const newTransaction = this.transactionRepository.create(createTransactionDto);
         
-        // 🚨 DEFINIR CAMPOS OBRIGATÓRIOS QUE NÃO ESTÃO NO DTO 🚨
         
         // a) Definir a data (se não for fornecida no DTO)
         if (!newTransaction.date) {
-        // 🚨 CORREÇÃO: Cria um objeto Date, não uma string ISO. 🚨
         newTransaction.date = new Date(); 
-        
-        // b) Definir o saldo após (balanceAfter) - ESTE É O CAMPO MAIS PROVÁVEL DE CAUSAR O ERRO 500
-        // Por enquanto, defina um valor temporário para garantir que a linha do DB seja preenchida.
-        // Lógica real: Chame getCurrentBalance() para calcular.
         newTransaction.balanceAfter = 0;        
 
 
@@ -125,5 +119,4 @@ try {
       
       return true; // Transação deletada
     }
-
 }

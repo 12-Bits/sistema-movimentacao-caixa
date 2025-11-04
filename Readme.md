@@ -40,3 +40,5 @@ Aguarde até que os logs do terminal mostrem que a API e o Frontend foram inicia
 <b>Frontend (React/Vite):</b> Abra seu navegador em http://localhost:5173
 
 <b>Backend (NestJS API):</b> A API estará acessível em http://localhost:3000 (o endpoint inicial do módulo é, geralmente, /cashflow).
+
+<b>Swagger<b> Para a documentação a API, vá para http://localhost:3000/api/docs 

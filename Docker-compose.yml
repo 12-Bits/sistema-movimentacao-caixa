@@ -3,17 +3,18 @@
 services:
   # 1. Serviço de Banco de Dados (PostgreSQL)
   db:
-    image: postgres:15-alpine # Imagem oficial leve
+    image: postgres:latest
     container_name: caixa_db_service
     restart: always
     environment:
       POSTGRES_USER: postgres 
-      POSTGRES_PASSWORD: banco123
-      POSTGRES_DB: caixa_db
+      POSTGRES_PASSWORD: banco123 
+      POSTGRES_DB: caixa_db # Opcional: use o valor fixo da API
+      PORT: 3000
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Persistência de dados
+      - postgres_data:/var/lib/postgresql # Persistência de dados
     networks:
       - app-network
 

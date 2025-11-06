@@ -1,23 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
-// 🚨 Tipagem do DTO (Adapte para o seu frontend) 🚨
-interface ListTransactionsParams {
-  type?: 'CREDIT' | 'DEBIT';
-  search?: string;
-  page?: number;
-  limit?: number;
-  sortBy?: string;
-  order?: 'asc' | 'desc';
-}
-
-// Tipagem para a resposta da API (sua entidade Transaction)
-interface Transaction {
-  id: number;
-  type: 'CREDIT' | 'DEBIT';
-  amount: number;
-  description: string;
-  date: string;
-}
+import type { Transaction, ListTransactionsParams } from '../types/cashflow.types';
 
 // Resposta com paginação (Se sua API retornar assim)
 interface PaginatedResponse {
@@ -80,5 +62,5 @@ export const useTransactions = () => {
     setParams(prev => ({ ...prev, ...newParams }));
   };
 
-  return { transactions, isLoading, error, total, params, updateParams };
+  return { transactions, isLoading, error, total, params, updateParams, fetchTransactions };
 };

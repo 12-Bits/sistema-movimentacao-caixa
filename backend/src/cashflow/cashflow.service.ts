@@ -113,23 +113,8 @@ export class CashflowService {
     };
 
     const total = calcTotals(this.transactions);
-
-    const monthly = calcTotals(
-      this.transactions.filter(
-        t =>
-          t.date.getMonth() === currentMonth &&
-          t.date.getFullYear() === currentYear,
-      ),
-    );
-
-    const yearly = calcTotals(
-      this.transactions.filter(t => t.date.getFullYear() === currentYear),
-    );
-
-    return {
-      total,
-      monthly,
-      yearly,
-    };
+    
+    // 🚨 A CORREÇÃO ESTÁ AQUI: Retorne 'total' diretamente.
+    return total;
   }
 }

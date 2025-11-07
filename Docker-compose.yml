@@ -1,7 +1,4 @@
-# A diretiva 'version' foi removida para usar a Compose Specification moderna.
-
 services:
-  # 1. Serviço de Banco de Dados (PostgreSQL)
   db:
     image: postgres:latest
     container_name: caixa_db_service
@@ -18,7 +15,6 @@ services:
     networks:
       - app-network
 
-  # 2. Serviço de API (NestJS - Backend)
   api:
     build:
       context: ./backend
@@ -42,7 +38,6 @@ services:
     # Inicia o servidor NestJS em modo de desenvolvimento (hot-reload)
     command: npm run start:dev
 
-  # 3. Serviço de Cliente (React - Frontend)
   client:
 
     image: node:20-alpine

@@ -25,7 +25,6 @@ export class CashflowController {
     return this.cashflowService.listTransactions(query);
   }
   
-  // NOVO: DELETE /cashflow/transaction/:id
   @Delete('transaction/:id')
   deleteTransaction(@Param('id') id: string) {
     const deleted = this.cashflowService.deleteTransaction(id);

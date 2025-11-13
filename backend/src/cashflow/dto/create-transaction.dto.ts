@@ -11,4 +11,7 @@ export class CreateTransactionDto {
 
   @ApiProperty({ example: 'Compra de suprimentos', description: 'Descrição da transação' })
   description: string;
+  
+  @ApiProperty({ example: '2025-11-13T10:00:00.000Z', description: 'Data/Hora da transação (ISO 8601)' })
+  date: string;
 }

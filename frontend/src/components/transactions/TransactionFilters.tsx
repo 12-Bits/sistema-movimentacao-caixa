@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import type { ListTransactionsParams } from '../../types/cashflow.types';
 
-// 1. Defina a tipagem dos filtros que este componente espera
-// (Idealmente, importe esta interface de um arquivo de tipos compartilhado)
 
 
-// 2. Defina as props que o componente receberá do App.tsx
 interface TransactionFiltersProps {
   params: ListTransactionsParams;
   updateParams: (newParams: Partial<ListTransactionsParams>) => void;
-  // Opcional: passe o 'total' de itens para desabilitar a paginação
-  // totalItems: number; 
+
 }
 
 export const TransactionFilters: React.FC<TransactionFiltersProps> = ({ params, updateParams }) => {
   
-  // 3. Estado local para o campo de busca (para evitar chamadas de API a cada tecla)
+  //  Estado local para o campo de busca (para evitar chamadas de API a cada tecla)
   const [localSearch, setLocalSearch] = useState(params.search || '');
 
   // Atualiza o estado local se o 'params.search' mudar externamente
@@ -24,7 +20,7 @@ export const TransactionFilters: React.FC<TransactionFiltersProps> = ({ params, 
   }, [params.search]);
 
 
-  // 4. Handlers (Manipuladores de eventos)
+  // Handlers (Manipuladores de eventos)
 
   // Filtro de Tipo (CREDIT/DEBIT/ALL)
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -61,7 +57,7 @@ export const TransactionFilters: React.FC<TransactionFiltersProps> = ({ params, 
   };
 
 
-  // 5. Renderização (JSX)
+  // Renderização (JSX)
   return (
     <div className="filters-container" style={{ margin: '20px 0' }}>
       <h4>Filtros e Ordenação</h4>

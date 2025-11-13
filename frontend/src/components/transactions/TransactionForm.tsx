@@ -5,17 +5,24 @@ interface TransactionFormProps {
   onTransactionAdded: () => void;
 }
 
-// O DTO define os tipos que precisamos enviar
+
+const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; 
+};
+
 type FormState = {
   type: 'CREDIT' | 'DEBIT';
-  amount: string; // Usamos string para o input do formulário
+  amount: string; 
   description: string;
+  date: string;
 };
 
 const initialState: FormState = {
   type: 'CREDIT',
   amount: '',
   description: '',
+  date: getTodayDate(), 
 };
 
 export const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded }) => {
@@ -36,15 +43,14 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionA
       return;
     }
 
-    try {
+try {
       const response = await fetch('http://localhost:3000/cashflow/transaction', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...formData,
-          amount: parseFloat(formData.amount), // Converte a string para número
+          type: formData.type,
+          amount: parseFloat(formData.amount), 
+          date: new Date(formData.date).toISOString(), 
         }),
       });
 
@@ -95,6 +101,15 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionA
             value={formData.description}
             onChange={handleChange}
             placeholder="Ex: Pagamento de fornecedor"
+          />
+        </div>
+        <div>
+          <label>Data da Transação:</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
           />
         </div>
         <button type="submit">Adicionar</button>

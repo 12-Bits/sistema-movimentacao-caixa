@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 
-// Prop para notificar o App.tsx que uma transação foi adicionada
+// Helper para obter a data atual no formato YYYY-MM-DD para o input
+const getTodayDate = () => {
+    const today = new Date();
+    // Garante o formato AAAA-MM-DD
+    return today.toISOString().split('T')[0]; 
+};
+
+
 interface TransactionFormProps {
   onTransactionAdded: () => void;
 }
 
-
-const getTodayDate = () => {
-    const today = new Date();
-    return today.toISOString().split('T')[0]; 
-};
-
+// 🟢 CORREÇÃO 1: Adicionar 'date' ao FormState
 type FormState = {
   type: 'CREDIT' | 'DEBIT';
   amount: string; 
   description: string;
-  date: string;
+  date: string; // <-- O CAMPO DATA ESTÁ AQUI
 };
 
 const initialState: FormState = {
   type: 'CREDIT',
   amount: '',
   description: '',
-  date: getTodayDate(), 
+  date: getTodayDate(), // <-- Inicializa com a data de hoje
 };
 
 export const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionAdded }) => {
@@ -38,19 +40,22 @@ export const TransactionForm: React.FC<TransactionFormProps> = ({ onTransactionA
     e.preventDefault();
     setError(null);
 
-    if (!formData.amount || !formData.description) {
-      setError('Por favor, preencha o valor e a descrição.');
+    // Verificação simplificada
+    if (!formData.amount) {
+      setError('Por favor, preencha o valor.');
       return;
     }
 
-try {
+    try {
       const response = await fetch('http://localhost:3000/cashflow/transaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           type: formData.type,
-          amount: parseFloat(formData.amount), 
-          date: new Date(formData.date).toISOString(), 
+          amount: parseFloat(formData.amount),
+          description: formData.description,
+          // 🟢 CORREÇÃO 2: Enviar o campo date na requisição
+          date: formData.date, 
         }),
       });
 
@@ -58,7 +63,6 @@ try {
         throw new Error('Falha ao criar transação.');
       }
 
-      // Limpa o formulário e avisa o App.tsx para recarregar a lista
       setFormData(initialState);
       onTransactionAdded(); 
 
@@ -103,18 +107,22 @@ try {
             placeholder="Ex: Pagamento de fornecedor"
           />
         </div>
+        
+        {/* 🟢 CORREÇÃO 3: Adicionar o campo de input para a data */}
         <div>
-          <label>Data da Transação:</label>
+          <label>Data:</label>
           <input
-            type="date"
+            type="date" // O tipo 'date' do HTML espera o formato YYYY-MM-DD
             name="date"
             value={formData.date}
             onChange={handleChange}
           />
         </div>
+
         <button type="submit">Adicionar</button>
-        {error && <p className="error-message">{error}</p>}
       </form>
+
+      {error && <p style={{ color: 'red' }}>Erro: {error}</p>}
     </div>
   );
 };

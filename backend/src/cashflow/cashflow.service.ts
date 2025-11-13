@@ -20,17 +20,31 @@ export class CashflowService {
         : previousBalance - createTransactionDto.amount;
 
     const now = new Date();
+    let transactionDate: Date;
+    
+    // 🟢 LÓGICA DE DATA ROBUSTA (Para usar a data do DTO ou a atual como fallback)
+    if (typeof createTransactionDto.date === 'string' && createTransactionDto.date.length > 0) {
+        // Tenta criar a data forçando UTC (para corrigir fuso horário do input[type=date])
+        const attemptedDate = new Date(`${createTransactionDto.date}T00:00:00.000Z`);
+        
+        if (isNaN(attemptedDate.getTime())) {
+            transactionDate = now; // Se for "Invalid Date", usa a data atual
+        } else {
+            transactionDate = attemptedDate; // Usa a data do DTO
+        }
+    } else {
+        transactionDate = now; // Se não houver data, usa a data atual
+    }
 
     const newTransaction: Transaction = {
       id: uuidv4(),
       type: createTransactionDto.type,
       amount: createTransactionDto.amount,
-      description: createTransactionDto.description,
+      description: createTransactionDto.description || 'Sem descrição', 
       balanceAfter: newBalance,
       createdAt: now,
-      date: now,
+      date: transactionDate,
     };
-
     this.transactions.push(newTransaction);
     console.log('Nova transação criada:', newTransaction);
     return newTransaction;

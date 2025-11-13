@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import { SummaryCards } from './components/dashboard/SummaryCards';
 import { TransactionsTable } from './components/transactions/TransactionTable';
 import { TransactionForm } from './components/transactions/TransactionForm'; 
@@ -8,7 +8,7 @@ import { useTransactions } from './hooks/useTransactions';
 import { CashflowBarChart } from './components/CashflowBarChart';
 
 
-const monthlyData = [
+const monthlyData = [ //Dados fixos, aplicar a API depois
   { label: 'Setembro', income: 4500, expense: 5200 },
   { label: 'Outubro', income: 5200, expense: 3100 },
   { label: 'Novembro', income: 4800, expense: 2500 },
@@ -22,14 +22,14 @@ function App() {
     isLoading, 
     error, 
     fetchTransactions,
-    params,         // 👈 2. Obtenha params
+    params,         
     updateParams
   } = useTransactions();
 
   // Função que será chamada após um POST ou DELETE
   const handleDataUpdate = () => {
     fetchTransactions();
-    // Você também precisará recarregar o SummaryCards (talvez modificando o useSummary da mesma forma)
+    // Recarregar SummaryCards
   };
 
   return (
@@ -47,10 +47,10 @@ function App() {
 
       {/* 2. Tabela para Listar e Excluir */}
       <TransactionsTable 
-        transactions={transactions} // Passamos os dados
+        transactions={transactions} 
         isLoading={isLoading}
         error={error}
-        onTransactionDeleted={handleDataUpdate} // Passamos a função de recarregar
+        onTransactionDeleted={handleDataUpdate} 
       />
       <BalanceCard />
       <div className="chart-container" style={{ marginTop: '40px' }}>

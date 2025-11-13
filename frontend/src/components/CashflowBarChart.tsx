@@ -40,7 +40,7 @@ export const CashflowBarChart: React.FC<CashflowBarChartProps> = ({
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // --- Escalas (O coração do D3) ---
+    // --- Escalas ---
     // Escala X: Mapeia os rótulos (ex: meses) para posições na horizontal
     const xScale = d3
       .scaleBand()

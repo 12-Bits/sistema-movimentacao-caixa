@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useSummary } from '../../hooks/useSummary';
-//import './SummaryCards.css'; // Crie este arquivo CSS para estilizar os cards
+//import './SummaryCards.css'; 
 
 // Helper para formatação de moeda
 const formatCurrency = (value: number) => {

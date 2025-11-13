@@ -24,13 +24,17 @@ export const TransactionFilters: React.FC<TransactionFiltersProps> = ({ params, 
 
   // Filtro de Tipo (CREDIT/DEBIT/ALL)
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newType = e.target.value;
-    updateParams({ 
-      // Se 'ALL', defina como undefined para remover o filtro
-      type: newType === 'ALL' ? undefined : (newType as 'CREDIT' | 'DEBIT'), 
-      page: 1 // Sempre reseta para a página 1 ao mudar filtros
-    });
-  };
+    const selectedValue = e.target.value; 
+    
+    // A variável que será passada ao updateParams
+const newType: ListTransactionsParams['type'] = 
+        selectedValue === 'ALL'
+            ? undefined
+            : (selectedValue as 'CREDIT' | 'DEBIT');
+
+    // O TypeScript agora deve aceitar 'newType' sem erro.
+    updateParams({ type: newType, page: 1 });
+};
 
   // Busca por Texto (Controlado)
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,11 +66,10 @@ export const TransactionFilters: React.FC<TransactionFiltersProps> = ({ params, 
     <div className="filters-container" style={{ margin: '20px 0' }}>
       <h4>Filtros e Ordenação</h4>
       
-      {/* Filtro de Tipo */}
       <label>Tipo: </label>
       <select 
-        value={params.type || 'ALL'} 
         onChange={handleTypeChange}
+        value={params.type || 'ALL'}
       >
         <option value="ALL">Todas</option>
         <option value="CREDIT">Entradas</option>
